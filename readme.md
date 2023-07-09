@@ -29,6 +29,8 @@ The current version of GodotDoom project is a work in progress. It features a li
 Assets
 
 The assets used in the GodotDoom project are licensed under the Creative Commons license, ensuring their availability for free and ethical use.
+Western FPS 2D Assets by https://sparklinlabs.itch.io/superpowers
+Retro Texture Pack by https://little-martian.itch.io/retro-texture-pack
 
 Contributing
 
