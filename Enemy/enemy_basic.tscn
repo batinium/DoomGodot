@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://cw76j3fjyqioq"]
+
+[ext_resource type="Script" path="res://Enemy/enemy_basic.gd" id="1_1d2ey"]
+[ext_resource type="Texture2D" uid="uid://cma0h52lk1e8n" path="res://game_textures/characters/1.png" id="2_x3m1w"]
+[ext_resource type="AudioStream" uid="uid://c2475jelfbi7f" path="res://Sounds/desert_pack/gun-1.ogg" id="3_ycqa0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j0lbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0f7n"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(756, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kaaa"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(945, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jx3y"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(1134, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xrxl"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(0, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_annyx"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(189, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmklv"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(378, 0, 189, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eufwm"]
+atlas = ExtResource("2_x3m1w")
+region = Rect2(567, 0, 189, 198)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qt62x"]
+animations = [{
+"frames": [{
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_f0f7n")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kaaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kaaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kaaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kaaa")
+}],
+"loop": false,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jx3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jx3y")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xrxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_annyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmklv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eufwm")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a3njl"]
+radius = 11.0
+
+[node name="enemybasic" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_1d2ey")
+health = 80
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_j0lbs")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -1, 2.08165e-12)
+centered = false
+offset = Vector2(-100, 2.08165e-12)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_qt62x")
+animation = &"damaged"
+
+[node name="Visual" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 2.08165e-12, -20)
+collision_mask = 13
+
+[node name="shoot_time" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+avoidance_enabled = true
+
+[node name="Aural" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Aural"]
+shape = SubResource("CylinderShape3D_a3njl")
+
+[node name="sound_shoot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ycqa0")
+
+[connection signal="timeout" from="shoot_time" to="." method="_on_shoot_time_timeout"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="Aural" to="." method="_on_aural_body_entered"]

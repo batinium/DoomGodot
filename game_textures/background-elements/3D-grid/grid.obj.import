@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://1uidsppxkr06"
+path="res://.godot/imported/grid.obj-e0156f6458d3d1924bcefc2d9909f2ae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/grid.obj-e0156f6458d3d1924bcefc2d9909f2ae.mesh"]
+
+source_file="res://game_textures/background-elements/3D-grid/grid.obj"
+dest_files=["res://.godot/imported/grid.obj-e0156f6458d3d1924bcefc2d9909f2ae.mesh", "res://.godot/imported/grid.obj-e0156f6458d3d1924bcefc2d9909f2ae.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

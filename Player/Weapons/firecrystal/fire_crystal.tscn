@@ -1,0 +1,135 @@
+[gd_scene load_steps=21 format=3 uid="uid://btunxo4l1p7q"]
+
+[ext_resource type="Script" path="res://Player/Weapons/firecrystal/fire_crystal.gd" id="1_78f8k"]
+[ext_resource type="Texture2D" uid="uid://c24ev6mtbsu0g" path="res://game_textures/item/weapons/explosion.png" id="3_61y2x"]
+[ext_resource type="Texture2D" uid="uid://dm4ko8wf718q5" path="res://game_textures/item/weapons/firecrystal/FATTA0.png" id="3_nsts6"]
+[ext_resource type="AudioStream" uid="uid://dshmrj06tmuv7" path="res://Sounds/desert_pack/explosion-1.ogg" id="4_nyw8i"]
+[ext_resource type="Texture2D" uid="uid://vhmr1s4qlmjo" path="res://game_textures/item/weapons/firecrystal/FATTB0.png" id="4_wqq5l"]
+[ext_resource type="Texture2D" uid="uid://swguxdyaj1ro" path="res://game_textures/item/weapons/firecrystal/FATTC0.png" id="5_evb25"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj24o"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d6od"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qojx"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m053t"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cphw"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3m7e"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdeyv"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcyws"]
+atlas = ExtResource("3_61y2x")
+region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nsg6"]
+atlas = ExtResource("3_nsts6")
+region = Rect2(0, 0, 64, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6pnm"]
+atlas = ExtResource("4_wqq5l")
+region = Rect2(0, 0, 80, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuuw1"]
+atlas = ExtResource("5_evb25")
+region = Rect2(0, 0, 100, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j3wu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj24o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d6od")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qojx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m053t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cphw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3m7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdeyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcyws")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nsg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6pnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuuw1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kalr3"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2m583"]
+radius = 3.0
+
+[node name="fire_crystal" type="Area3D"]
+collision_mask = 14
+script = ExtResource("1_78f8k")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-1.31134e-07, 1.13635e-15, 3.57, 1.04636e-15, 3.258, -1.24517e-15, -3, 1.13635e-15, -1.5605e-07, 0, 0, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_8j3wu")
+animation = &"idle"
+frame_progress = 0.390529
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kalr3")
+
+[node name="splashdamage" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="splashdamage"]
+shape = SubResource("SphereShape3D_2m583")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="explosion" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_nyw8i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="splashdamage" to="." method="_on_splashdamage_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

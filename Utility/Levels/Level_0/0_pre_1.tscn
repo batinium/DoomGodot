@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bctvtecqplfum"]
+
+[ext_resource type="MeshLibrary" uid="uid://lkwc5sq0x1dw" path="res://Utility/Levels/Level_0/backrooms.tres" id="1_qnum5"]
+
+[node name="0_pre1" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_qnum5")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 65530, 1376264, 65535, 65530, 1376264, 65533, 65533, 1376258, 65532, 65534, 1376267, 65530, 65534, 1376267, 65528, 65534, 1376267, 1, 65530, 1114120, 65527, 5, 1114120, 65529, 5, 1114120, 65531, 5, 1114120, 65534, 5, 1114122, 65527, 65534, 786442, 65527, 65529, 786442, 65529, 65527, 1376266, 65534, 65527, 1376266, 65530, 2, 1376258, 5, 65531, 1376256, 5, 65534, 393225)
+}

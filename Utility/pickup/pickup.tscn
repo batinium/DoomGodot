@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b458657h5brdq"]
+
+[ext_resource type="Script" path="res://Utility/pickup/pickup.gd" id="1_0hygj"]
+[ext_resource type="Texture2D" uid="uid://bdfsh1m6ucjhv" path="res://game_textures/item/medikit.png" id="1_2u6qg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sqw4h"]
+radius = 1.0
+
+[node name="pickup" type="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_0hygj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_2u6qg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sqw4h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

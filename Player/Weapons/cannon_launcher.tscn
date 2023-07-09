@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch5h6jrljwqjl"]
+
+[ext_resource type="Script" path="res://Player/Weapons/cannon_launcher.gd" id="1_dl0jg"]
+[ext_resource type="Texture2D" uid="uid://bti7px8ljcyhp" path="res://game_textures/item/weapons/Cannonball/cannonball_w.png" id="2_p8bku"]
+[ext_resource type="AudioStream" uid="uid://bddiweceadik1" path="res://Sounds/desert_pack/woosh-1.ogg" id="3_yr5m2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4qt2"]
+atlas = ExtResource("2_p8bku")
+region = Rect2(0, 0, 49, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4q36"]
+atlas = ExtResource("2_p8bku")
+region = Rect2(49, 0, 49, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0dne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4q36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4qt2")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 2.0
+}]
+
+[node name="cannonball" type="Node3D"]
+script = ExtResource("1_dl0jg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GunSprite" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+position = Vector2(10, -54)
+scale = Vector2(3.73724, 3.52315)
+sprite_frames = SubResource("SpriteFrames_y0dne")
+animation = &"idle"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+
+[node name="shoot" type="AudioStreamPlayer3D" parent="Marker3D"]
+stream = ExtResource("3_yr5m2")
+bus = &"Guns"

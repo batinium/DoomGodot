@@ -1,0 +1,9 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://mp3ksfu76dng"]
+
+[resource]
+bus/1/name = &"Guns"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -13.7843
+bus/1/send = &"Master"

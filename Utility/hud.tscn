@@ -1,0 +1,189 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcjka534vy38e"]
+
+[ext_resource type="FontFile" uid="uid://ci0pod2ph1unv" path="res://Utility/Anton-Regular.ttf" id="1_0aj5c"]
+[ext_resource type="Script" path="res://Utility/hud.gd" id="1_1316k"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://Utility/joystick/virtual_joystick.tscn" id="3_2hosw"]
+
+[sub_resource type="Theme" id="Theme_scyyv"]
+default_font = ExtResource("1_0aj5c")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wlgd"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.215686, 0.215686, 0.215686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmma3"]
+bg_color = Color(0.98275, 2.29796e-06, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnjy5"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.141176, 0.141176, 0.141176, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oktbw"]
+bg_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_1316k")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_scyyv")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="armorlabel" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+custom_minimum_size = Vector2(60, 2.08165e-12)
+layout_mode = 2
+text = "Armor"
+
+[node name="healthlabel" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Health"
+
+[node name="Values" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="armorvalue" type="Label" parent="MarginContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(30, 2.08165e-12)
+layout_mode = 2
+text = "10
+"
+
+[node name="healthvalue" type="Label" parent="MarginContainer/HBoxContainer/Values"]
+layout_mode = 2
+text = "5
+"
+
+[node name="Ammo" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Ammo"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5wlgd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gmma3")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Ammo"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_nnjy5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oktbw")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="ammovalue" type="Label" parent="MarginContainer/HBoxContainer/Ammo"]
+custom_minimum_size = Vector2(30, 2.08165e-12)
+layout_mode = 2
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="mobile" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="jump" type="Button" parent="mobile"]
+offset_left = 800.0
+offset_top = 551.0
+offset_right = 975.0
+offset_bottom = 620.0
+text = "Run"
+
+[node name="run" type="Button" parent="mobile"]
+offset_left = 798.0
+offset_top = 627.0
+offset_right = 973.0
+offset_bottom = 696.0
+text = "Run"
+
+[node name="changegun" type="Button" parent="mobile"]
+offset_left = 1071.0
+offset_top = 339.0
+offset_right = 1246.0
+offset_bottom = 408.0
+text = "ChangeGun"
+
+[node name="shoot" type="Button" parent="mobile"]
+offset_left = 1077.0
+offset_top = 257.0
+offset_right = 1252.0
+offset_bottom = 326.0
+text = "Shoot"
+
+[node name="Virtual Joystick2" parent="mobile" instance=ExtResource("3_2hosw")]
+layout_mode = 1
+offset_left = 978.0
+offset_top = 378.0
+offset_right = 1278.0
+offset_bottom = 678.0
+action_left = "look_left"
+action_right = "look_right"
+action_up = "look_up"
+action_down = "look_down"
+
+[node name="Virtual Joystick" parent="mobile" instance=ExtResource("3_2hosw")]
+layout_mode = 1
+offset_top = 372.0
+offset_bottom = 672.0
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_back"
+
+[connection signal="button_down" from="mobile/jump" to="." method="_on_jump_button_down"]
+[connection signal="button_down" from="mobile/run" to="." method="_on_run_button_down"]
+[connection signal="button_down" from="mobile/changegun" to="." method="_on_changegun_button_down"]
+[connection signal="button_down" from="mobile/shoot" to="." method="_on_shoot_button_down"]

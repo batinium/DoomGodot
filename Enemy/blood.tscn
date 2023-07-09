@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bifr3ui4y2t5h"]
+
+[ext_resource type="Texture2D" uid="uid://diwnu5tum25eb" path="res://game_textures/particles/blood-2.png" id="1_kpehj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxm7a"]
+albedo_texture = ExtResource("1_kpehj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ecpo"]
+material = SubResource("StandardMaterial3D_fxm7a")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Blood" type="CPUParticles3D"]
+amount = 25
+preprocess = 1.0
+explosiveness = 1.0
+lifetime_randomness = 0.1
+mesh = SubResource("BoxMesh_5ecpo")
+emission_shape = 4
+emission_points = PackedVector3Array()
+particle_flag_align_y = true
+direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.5
