@@ -101,7 +101,7 @@ animation = &"cannonball"
 shape = SubResource("SphereShape3D_kalr3")
 
 [node name="splashdamage" type="Area3D" parent="."]
-collision_mask = 6
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="splashdamage"]
 shape = SubResource("SphereShape3D_2m583")

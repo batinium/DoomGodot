@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://df38yrd1exdp5"]
+
+[ext_resource type="PackedScene" uid="uid://221up482srkn" path="res://Assets/build/BrickBuilding.glb" id="1_ep0p3"]
+[ext_resource type="Shader" path="res://jitter.gdshader" id="2_u3k8t"]
+[ext_resource type="Texture2D" uid="uid://bgjbrfnjue0th" path="res://Assets/build/BrickBuilding_brick_buillding_front_lowres.png" id="3_ipfwy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dimn1"]
+render_priority = 0
+shader = ExtResource("2_u3k8t")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("3_ipfwy")
+
+[node name="BrickBuilding" instance=ExtResource("1_ep0p3")]
+
+[node name="BrickBuildingFront" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_dimn1")
