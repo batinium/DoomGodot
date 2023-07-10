@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c4bjmwh44dgny"]
+[gd_scene load_steps=30 format=3 uid="uid://c4bjmwh44dgny"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_fyjyn"]
 [ext_resource type="AudioStream" uid="uid://bkfdylhrfpgb" path="res://Sounds/ambience/fluorescent-light-buzz.mp3" id="2_oyncf"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dgcodk2xjfkkt" path="res://textures/BRICK_2A.png" id="11_oemss"]
 [ext_resource type="Texture2D" uid="uid://c5vgu1mnf3mwa" path="res://textures/BRICK_4A.png" id="12_01kx5"]
 [ext_resource type="Environment" uid="uid://bq5csm558hl7e" path="res://World.tres" id="12_aqu8q"]
-[ext_resource type="PackedScene" uid="uid://dijnmpxl6urvv" path="res://Utility/props/explosive_barrel.tscn" id="15_oh2vt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_j31ds"]
 vertices = PackedVector3Array(2.5, -0.250003, 2.5, 2.5, -0.250003, -7.5, -4.25, -0.250003, -7.25, -4.5, -0.250003, 2.5, -4.5, -0.250003, 2.5, -4.25, -0.250003, -7.25, -11.25, -0.250003, -7.25, -11.25, -0.250003, 2.5, 2.5, -0.250003, -7.5, 2.5, -0.250003, 2.5, 4.25, -0.250003, 2.5, 13.5, -0.250003, 2.25, 13.5, -0.250003, -7.5, 4.25, -0.250003, 4.25, 1.25, -0.250003, 4.25, 1.5, -0.250003, 6, 4.5, -0.250003, 6, 13.5, -0.250003, 2.25, 4.25, -0.250003, 2.5, 4.75, -0.250003, 2.75, 4.25, -0.250003, 4.25, 4.5, -0.250003, 6, 4.75, -0.250003, 7.25, 13.5, -0.250003, 7.75, 13.5, -0.250003, 2.25, 4.75, -0.250003, 2.75, 4.75, -0.250003, 7.25, 4.25, -0.250003, 7.75, 13.5, -0.250003, 7.75, 0.5, 3, 3.5, 0.5, 3, 8.5, 3.5, 3, 8.5, 3.5, 3, 3.5, -11, 1.25, 4.25, -11, 0.749997, 7.5, -9.5, 0.749997, 7.5, -9.5, 1.25, 4.25, -0.25, -0.250003, 6, 1.5, -0.250003, 6, 1.25, -0.250003, 4.25, -8.25, -0.250003, 4.25, 1, -0.250003, 29.25, 3.5, -0.250003, 29.25, 3.75, -0.250003, 27, 0.75, -0.250003, 27, 3.75, -0.250003, 27, 13.5, -0.250003, 27, 13.5, -0.250003, 17.25, -8.25, -0.250003, 8.5, -11.25, -0.250003, 8.75, -11.5, -0.250003, 15.75, -5.5, -0.250003, 27, 0.75, -0.250003, 27, 13.5, -0.250003, 17.25, 13.5, -0.250003, 7.75, 4.25, -0.250003, 7.75, -11.5, -0.250003, 15.75, -11.5, -0.250003, 27, -5.5, -0.250003, 27, -0.25, -0.250003, 6, -8.25, -0.250003, 4.25, -8.25, -0.250003, 8.5, -0.5, -0.250003, 7.5, 0.75, -0.250003, 27, 3.75, -0.250003, 27, 13.5, -0.250003, 17.25, 4.25, -0.250003, 7.75, -0.5, -0.250003, 7.5, -8.25, -0.250003, 8.5, 3.5, -0.250003, 29.25, 1, -0.250003, 29.25, 1, -0.250003, 36, 3.5, -0.250003, 36, 1, -0.250003, 36, 1, -0.250003, 43, 3.5, -0.250003, 43, 3.5, -0.250003, 36)
@@ -188,6 +187,7 @@ shape = SubResource("ConcavePolygonShape3D_7rowp")
 
 [node name="Spawner" parent="TestZone" instance=ExtResource("4_pd61i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1)
+manytospawn = 1
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_oyncf")
@@ -223,5 +223,7 @@ light_energy = 2.0
 shadow_enabled = true
 directional_shadow_mode = 0
 
-[node name="explosive_barrel" parent="." instance=ExtResource("15_oh2vt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 11)
+[node name="Spawner" parent="." instance=ExtResource("4_pd61i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -3)
+spawntype = 1
+manytospawn = 1
